@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DALImplementation\" />
-    <Folder Include="DALApi\" />
     <Folder Include="DALModels\" />
   </ItemGroup>
 
