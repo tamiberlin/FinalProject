@@ -5,13 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DALApi
+namespace DAL.DALApi;
+
+public interface ICostumerService : IService<Costumer>
 {
-    internal interface ICostumerService
-    {
-        Task<List<Costumer>> GetAllAsync();
-        Task<bool> CreateAsync(Costumer costumer);
-        Task<bool> UpdateAsync(Costumer costumer);
-        Task<bool> DeleteAsync(params string[] list);
-    }
+  
 }

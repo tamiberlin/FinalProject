@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "FinalProject\Server.csproj", "{1616BA55-BD93-4DF5-B0AD-FAB25986859F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "FinalProject\Server.csproj", "{1616BA55-BD93-4DF5-B0AD-FAB25986859F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{60C337A0-47EB-4ADD-B43F-264EE3BB4F3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{60C337A0-47EB-4ADD-B43F-264EE3BB4F3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{72B078FB-5D9F-430F-859B-5A9A87DAA70F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{72B078FB-5D9F-430F-859B-5A9A87DAA70F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{66FD0377-BCCA-4BE8-B429-4AE41F78F57C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{72B078FB-5D9F-430F-859B-5A9A87DAA70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B078FB-5D9F-430F-859B-5A9A87DAA70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B078FB-5D9F-430F-859B-5A9A87DAA70F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66FD0377-BCCA-4BE8-B429-4AE41F78F57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66FD0377-BCCA-4BE8-B429-4AE41F78F57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66FD0377-BCCA-4BE8-B429-4AE41F78F57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66FD0377-BCCA-4BE8-B429-4AE41F78F57C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
