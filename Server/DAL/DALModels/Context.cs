@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.DALModels1;
 
-partial class Context : DbContext
+public partial class Context : DbContext
 {
     public Context()
     {

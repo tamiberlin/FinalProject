@@ -1,4 +1,6 @@
-﻿using DAL.DALModels1;
+﻿using BL.BLApi;
+using Common;
+using DAL.DALModels1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BL.BLModels
 {
-    public class BLCostumer
+    public class BLCostumer 
     {
         public string CostumerId { get; set; } = null!;
 

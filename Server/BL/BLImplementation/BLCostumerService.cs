@@ -1,6 +1,8 @@
 ﻿using BL.BLApi;
 using BL.BLModels;
 using Common;
+using DAL.DALApi;
+using DAL.DALImplementation;
 using DAL.DALModels1;
 using System;
 using System.Collections.Generic;
@@ -10,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace BL.BLImplementation
 {
-    public class CostumerService : ICostumerService
+    public class BLCostumerService : IBLCostumerService
     {
         CostumerService costumerService;
-        public CostumerService(CostumerService costumerService)
+        public BLCostumerService(CostumerService costumerService)
         {
             this.costumerService = costumerService;
         }
@@ -31,9 +33,17 @@ namespace BL.BLImplementation
             return usersList;
         }
 
-        private Task<PagedList<Costumer>> GetAllAsync(BaseQueryParams queryParams)
+        public List<BLCostumer> GetAll(BaseQueryParams queryParams)
         {
-            throw new NotImplementedException();
+            Task<PagedList<Costumer>> pagedCostumers = costumerService.GetAllAsync(queryParams);
+            List<BLCostumer> usersList = new List<BLCostumer>();
+            foreach (var costumer in pagedCostumers.Result)
+            {
+                BLCostumer newCostumer = new BLCostumer();
+                newCostumer.CostumerName = costumer.CostumerName;
+                usersList.Add(newCostumer);
+            }
+            return usersList;
         }
 
         public Task<bool> CreateAsync(Costumer costumer)

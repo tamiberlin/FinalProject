@@ -1,1 +1,1 @@
-Scaffold-DbContext 'Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="H:\פולסטאק-פרויקט כולל\FinalProject\DB\Database.mdf";Integrated Security=True;Connect Timeout=30' Microsoft.EntityFrameworkCore.SqlServer –Context FoodFactoryContext -OutputDir DALModels  -Force
+Scaffold-DbContext 'Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="H:\פולסטאק-פרויקט כולל\FinalProject\DB\Database.mdf";Integrated Security=True;Connect Timeout=30' Microsoft.EntityFrameworkCore.SqlServer –Context Context -OutputDir DALModels  -Force
