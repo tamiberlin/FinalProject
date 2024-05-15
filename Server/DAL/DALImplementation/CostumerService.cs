@@ -62,10 +62,7 @@ public class CostumerService : ICostumerService
         }
     }
 
-    public Task<PagedList<Costumer>> GetAllAsync(BaseQueryParams queryParams)
-    {
-        throw new NotImplementedException();
-    }
+ 
 
     public Task<Costumer> GetSingleAsync(int id)
     {
@@ -80,6 +77,11 @@ public class CostumerService : ICostumerService
     }
 
     public Task<Costumer> UpdateAsync(int id, Costumer entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    Task<List<Costumer>> IService<Costumer>.GetAllAsync(BaseQueryParams queryParams)
     {
         throw new NotImplementedException();
     }

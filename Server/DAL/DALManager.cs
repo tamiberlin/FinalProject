@@ -8,20 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL;
+
+public class DALManager
 {
-    public class DALManager
+    public CostumerService Costumers { get; }
+
+    public DALManager() 
     {
-        public CostumerService Costumers { get; }
+        ServiceCollection services = new();
+        services.AddDbContext<Context>();
+        services.AddScoped<ICostumerService, CostumerService>();
 
-        public DALManager() 
-        {
-            ServiceCollection services = new();
-            services.AddDbContext<Context>();
-            services.AddScoped<ICostumerService, CostumerService>();
-
-            ServiceProvider servicesProvider = services.BuildServiceProvider();
-            Costumers = (CostumerService)servicesProvider.GetRequiredService<ICostumerService>();
-        }
+        ServiceProvider servicesProvider = services.BuildServiceProvider();
+        Costumers = (CostumerService)servicesProvider.GetRequiredService<ICostumerService>();
     }
 }

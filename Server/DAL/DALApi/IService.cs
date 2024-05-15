@@ -9,7 +9,7 @@ namespace DAL.DALApi;
 
 public interface IService<T>
 {
-    Task<PagedList<T>> GetAllAsync(BaseQueryParams queryParams);
+    Task<List<T>> GetAllAsync(BaseQueryParams queryParams);
     Task<T> GetSingleAsync(int id);
     Task<T> AddAsync(T entity);
     Task<T> UpdateAsync(int id, T entity);
