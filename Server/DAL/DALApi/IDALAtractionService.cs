@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DALApi;
 
-public interface IAtractionService : IService<Attraction>
+public interface IDALAtractionService : IDALService<Attraction>
 {
 
 }

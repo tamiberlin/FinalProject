@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 namespace DAL.DALApi;
 
-public interface ITourService : IService<Tour>
+public interface IDALFlightService : IDALService<Flight>
 {
 }

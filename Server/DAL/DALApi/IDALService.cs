@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DALApi;
 
-public interface IService<T>
+public interface IDALService<T>
 {
     Task<List<T>> GetAllAsync(BaseQueryParams queryParams);
     Task<T> GetSingleAsync(int id);

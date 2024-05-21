@@ -12,15 +12,15 @@ namespace DAL;
 
 public class DALManager
 {
-    public CostumerService Costumers { get; }
+    public DALCostumerService Costumers { get; }
 
     public DALManager() 
     {
         ServiceCollection services = new();
         services.AddDbContext<Context>();
-        services.AddScoped<ICostumerService, CostumerService>();
+        services.AddScoped<IDALCostumerService, DALCostumerService>();
 
         ServiceProvider servicesProvider = services.BuildServiceProvider();
-        Costumers = (CostumerService)servicesProvider.GetRequiredService<ICostumerService>();
+        Costumers = (DALCostumerService)servicesProvider.GetRequiredService<IDALCostumerService>();
     }
 }

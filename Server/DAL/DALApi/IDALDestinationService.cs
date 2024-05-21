@@ -1,12 +1,13 @@
 ﻿using DAL.DALModels1;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.DALApi;
 
-public interface IHousingService : IService<Housing>
+public interface IDALDestinationService : IDALService<Destination>
 {
 }

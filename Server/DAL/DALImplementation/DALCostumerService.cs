@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace DAL.DALImplementation;
 
-public class CostumerService : ICostumerService
+public class DALCostumerService : IDALCostumerService
 {
     Context context;
-    public CostumerService(Context context)
+    public DALCostumerService(Context context)
     {
         this.context = context;
     }
@@ -81,7 +81,7 @@ public class CostumerService : ICostumerService
         throw new NotImplementedException();
     }
 
-    Task<List<Costumer>> IService<Costumer>.GetAllAsync(BaseQueryParams queryParams)
+    Task<List<Costumer>> IDALService<Costumer>.GetAllAsync(BaseQueryParams queryParams)
     {
         throw new NotImplementedException();
     }

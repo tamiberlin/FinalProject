@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DALApi;
 
-public interface ICostumerService : IService<Costumer>
+public interface IDALCostumerService : IDALService<Costumer>
 {
   
 }

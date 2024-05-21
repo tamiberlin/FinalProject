@@ -8,8 +8,8 @@ namespace BL.BLImplementation
 {
     public class BLCostumerService : IBLCostumerService
     {
-        CostumerService costumerService;
-        public BLCostumerService(CostumerService costumerService)
+        DALCostumerService costumerService;
+        public BLCostumerService(DALCostumerService costumerService)
         {
             this.costumerService = costumerService;
         }
