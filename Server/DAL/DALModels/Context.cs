@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.DALModels1;
+namespace DAL.DALModels;
 
 public partial class Context : DbContext
 {

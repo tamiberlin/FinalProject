@@ -1,13 +1,9 @@
 ﻿using Common;
 using DAL.DALApi;
-using DAL.DALModels1;
+using DAL.DALModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DAL.DALImplementation;
 
@@ -19,20 +15,8 @@ public class DALCostumerService : IDALCostumerService
         this.context = context;
     }
 
-    public Task<Costumer> AddAsync(Costumer entity)
-    {
-        throw new NotImplementedException();
-    }
-
     #region Create functions
     public Task<bool> CreateAsync(Costumer entity)
-    {
-        throw new NotImplementedException();
-    }
-    #endregion
-
-    #region Delete functions
-    public Task<bool> DeleteAsync(params string[] list)
     {
         throw new NotImplementedException();
     }
@@ -41,6 +25,10 @@ public class DALCostumerService : IDALCostumerService
     {
         throw new NotImplementedException();
     }
+    #endregion
+
+    #region Delete functions
+
     #endregion
 
     #region Get functions
@@ -62,28 +50,24 @@ public class DALCostumerService : IDALCostumerService
         }
     }
 
- 
+    //public Task<List<Costumer>> GetAllAsync(BaseQueryParams queryParams)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    public Task<Costumer> GetSingleAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-    #endregion
 
-    #region Update functions
-    public Task<bool> UpdateAsync(  Costumer entity)
-    {
-        throw new NotImplementedException();
-    }
 
-    public Task<Costumer> UpdateAsync(int id, Costumer entity)
-    {
-        throw new NotImplementedException();
-    }
+    //public Task<List<Costumer>> GetAllAsync(BaseQueryParams queryParams)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    Task<List<Costumer>> IDALService<Costumer>.GetAllAsync(BaseQueryParams queryParams)
-    {
-        throw new NotImplementedException();
-    }
-    #endregion
+    //public Task<Costumer> GetSingleAsync(int id)
+    //{
+    //    throw new NotImplementedException();
 }
+#endregion
+
+#region Update functions
+
+    #endregion

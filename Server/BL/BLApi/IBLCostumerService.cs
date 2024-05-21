@@ -10,6 +10,6 @@ namespace BL.BLApi
             Task<bool> CreateAsync(BLCostumer costumer);
             Task<bool> UpdateAsync(BLCostumer costumer);
             Task<bool> DeleteAsync(params string[] list);
-        public List<BLCostumer> GetAll(BaseQueryParams queryParams);
+        //public List<BLCostumer> GetAll(BaseQueryParams queryParams);
     }
 }

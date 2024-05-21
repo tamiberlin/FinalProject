@@ -22,9 +22,9 @@ namespace Server.Controllers
 
         [EnableCors]
         [HttpGet]
-        public List<BLCostumer> GetCostumers([FromQuery] BaseQueryParams queryParams)
+        public Task<List<BLCostumer>> GetCostumers()
         {
-            return costumers.GetAll(queryParams);
+            return costumers.GetAllAsync();
         }
     }
 }

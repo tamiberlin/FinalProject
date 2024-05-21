@@ -1,41 +1,19 @@
 ﻿using BL.BLApi;
 using BL.BLModels;
 using Common;
+using DAL;
 using DAL.DALImplementation;
-using DAL.DALModels1;
+using DAL.DALModels;
 
 namespace BL.BLImplementation
 {
     public class BLCostumerService : IBLCostumerService
     {
         DALCostumerService costumerService;
-        public BLCostumerService(DALCostumerService costumerService)
+        public BLCostumerService(DALManager costumerService)
         {
-            this.costumerService = costumerService;
+            this.costumerService = costumerService.Costumers;
         }
-
-        /*     public List<BLCostumer> GetCostumers(BaseQueryParams queryParams)
-             {
-                 Task<List<Costumer>> pagedCostumers = costumerService.GetAllAsync(queryParams);
-                 List<BLCostumer> usersList = new List<BLCostumer>();
-                 foreach (var costumer in pagedCostumers.Result)
-                 {
-                     BLCostumer newCostumer = new BLCostumer();
-                     newCostumer.CostumerName = costumer.CostumerName;
-                     usersList.Add(newCostumer);
-                 }
-                 return usersList;
-             }*/
-        /*     public async Task<List<FlightDTO>> GetAllAsync()
-             {
-                 List<Flight> flights = await _flightRepo.GetAllAsync();
-                 List<FlightDTO> flightDTOs = new List<FlightDTO>();
-                 flights.ForEach(flight => {
-                     FlightDTO f = _mapper.Map<Flight, FlightDTO>(flight);
-                     flightDTOs.Add(f);
-                 });
-                 return flightDTOs;
-             }*/
         public async Task<List<BLCostumer>> GetAllAsync()
         {
             List<Costumer> pagedCostumers = await costumerService.GetAllAsync();
@@ -48,10 +26,10 @@ namespace BL.BLImplementation
             }
             return usersList;
         }
-        /*  public Task<List<BLCostumer>> GetAllAsync()
-          {
-              throw new NotImplementedException();
-          }*/
+   
+
+
+
 
         public Task<bool> CreateAsync(BLCostumer costumer)
         {
@@ -68,10 +46,10 @@ namespace BL.BLImplementation
             throw new NotImplementedException();
         }
 
-        public List<BLCostumer> GetAll(BaseQueryParams queryParams)
-        {
-            throw new NotImplementedException();
-        }
+        //public List<BLCostumer> GetAll(BaseQueryParams queryParams)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
     }
