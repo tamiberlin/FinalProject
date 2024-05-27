@@ -15,59 +15,75 @@ public class DALCostumerService : IDALCostumerService
         this.context = context;
     }
 
-    #region Create functions
-    public Task<bool> CreateAsync(Costumer entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Costumer> DeleteAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-    #endregion
-
-    #region Delete functions
-
-    #endregion
-
     #region Get functions
-    public async Task<List<Costumer>> GetAllAsync()
+
+    public async Task<PagedList<Costumer>> GetAllAsync(BaseQueryParams queryParams)
+    {
+        var queryable = context.Costumers.AsQueryable();
+        return PagedList<Costumer>.ToPagedList(queryable, queryParams.PageNumber, queryParams.PageSize);
+
+    }
+    #endregion
+
+    #region Create functions
+    public async Task<Costumer> CreateAsync(Costumer entity)
     {
         try
         {
-            List<Costumer> costumers = await context.Costumers.ToListAsync();
-            return costumers == null ? throw new ArgumentNullException("No costumers in our system") : costumers;
+            context.Costumers.Add(entity);
+            await context.SaveChangesAsync();
+            return entity;
         }
-        catch (ArgumentNullException ex) 
+        catch (Exception ex)
         {
-            Debug.WriteLine(ex.Message);
-            throw ex;
-        }
-        catch (TimeoutException ex)
-        {
-            throw ex;
+            Debug.WriteLine(ex);
+            throw new Exception("failed to add a new costumer");
         }
     }
 
-    //public Task<List<Costumer>> GetAllAsync(BaseQueryParams queryParams)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-
-
-    //public Task<List<Costumer>> GetAllAsync(BaseQueryParams queryParams)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-    //public Task<Costumer> GetSingleAsync(int id)
-    //{
-    //    throw new NotImplementedException();
-}
-#endregion
-
-#region Update functions
 
     #endregion
+
+    #region Delete functions
+    public async Task<Costumer> DeleteAsync(String id)
+    {
+        try
+        {
+        Costumer costumer = context.Costumers.FirstOrDefault(c => c.CostumerId.Equals(id));
+        if (costumer != null)
+        {
+            context.Costumers.Remove(costumer);
+        }
+        await context.SaveChangesAsync();
+        return costumer;
+        }
+        catch(Exception ex)
+        {
+            Debug.WriteLine(ex.ToString());
+            throw new Exception($"failed to dalete costumer : {id}");
+        }
+    }
+    #endregion
+
+    #region Update functions// doesnt work well!!!
+    public async Task<Costumer> UpdateAsync(string id, Costumer entity)
+    {
+        try
+        {
+            Costumer costumer = context.Costumers.FirstOrDefault(c => c.CostumerId.Equals(id));
+            if (costumer != null)
+            {
+                context.Costumers.Update(entity);
+            }
+            await context.SaveChangesAsync();
+            return costumer;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.ToString());
+            throw new Exception($"failed to update costumer : {id}");
+        }
+    }
+    #endregion
+
+}

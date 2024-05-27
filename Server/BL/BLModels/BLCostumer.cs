@@ -23,10 +23,10 @@ namespace BL.BLModels
 
         public int PaymentCode { get; set; }
 
-        public virtual ICollection<DatesForRoom> DatesForRooms { get; set; } = new List<DatesForRoom>();
+        //public virtual ICollection<DatesForRoom> DatesForRooms { get; set; } = new List<DatesForRoom>();
 
-        public virtual Payment PaymentCodeNavigation { get; set; } = null!;
+        //public virtual Payment PaymentCodeNavigation { get; set; } = null!;
 
-        public virtual Tour TourCodeNavigation { get; set; } = null!;
+        //public virtual Tour TourCodeNavigation { get; set; } = null!;
     }
 }

@@ -1,15 +1,11 @@
 ﻿using BL.BLModels;
 using Common;
-
+using DAL.DALModels;
 
 namespace BL.BLApi
 {
-    public interface IBLCostumerService
+    public interface IBLCostumerService : IBLService<BLCostumer, Costumer>
     {
-            Task<List<BLCostumer>> GetAllAsync();
-            Task<bool> CreateAsync(BLCostumer costumer);
-            Task<bool> UpdateAsync(BLCostumer costumer);
-            Task<bool> DeleteAsync(params string[] list);
-        //public List<BLCostumer> GetAll(BaseQueryParams queryParams);
+       
     }
 }

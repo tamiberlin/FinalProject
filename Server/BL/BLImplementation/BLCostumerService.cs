@@ -14,43 +14,51 @@ namespace BL.BLImplementation
         {
             this.costumerService = costumerService.Costumers;
         }
-        public async Task<List<BLCostumer>> GetAllAsync()
+
+        public Task<Costumer> Create(BLCostumer entity)
         {
-            List<Costumer> pagedCostumers = await costumerService.GetAllAsync();
+            Costumer newCostumer = new Costumer();
+            newCostumer.CostumerId = entity.CostumerId;
+            newCostumer.CostumerName = entity.CostumerName;
+            newCostumer.PhoneNumber = entity.PhoneNumber;
+            newCostumer.NumberOfPeople = entity.NumberOfPeople;
+            newCostumer.PaymentCode = entity.PaymentCode;
+            newCostumer.TourCode = entity.TourCode;
+            costumerService.CreateAsync(newCostumer);
+            return Task.FromResult(newCostumer);
+        }
+
+        public List<BLCostumer> GetAll(BaseQueryParams queryParams)
+        {
+            Task<PagedList<Costumer>> pagedCostumers = costumerService.GetAllAsync(queryParams);
             List<BLCostumer> usersList = new List<BLCostumer>();
-            foreach (var costumer in pagedCostumers)
+            foreach (var costumer in pagedCostumers.Result)
             {
                 BLCostumer newCostumer = new BLCostumer();
                 newCostumer.CostumerName = costumer.CostumerName;
+                newCostumer.CostumerId= costumer.CostumerId;
+                newCostumer.TourCode= costumer.TourCode;
+                newCostumer.PaymentCode= costumer.PaymentCode;
+                newCostumer.NumberOfPeople= costumer.NumberOfPeople;
                 usersList.Add(newCostumer);
             }
             return usersList;
         }
-   
 
-
-
-
-        public Task<bool> CreateAsync(BLCostumer costumer)
+        public Task<Costumer> Delete(string id)
         {
-            throw new NotImplementedException();
+             return costumerService.DeleteAsync(id);
         }
 
-        public Task<bool> UpdateAsync(BLCostumer costumer)
+        public Task<Costumer> Update(string id, BLCostumer newCostumer)
         {
-            throw new NotImplementedException();
+            Costumer updatedCostumer = new Costumer();
+            updatedCostumer.CostumerId = newCostumer.CostumerId;
+            updatedCostumer.CostumerName = newCostumer.CostumerName;
+            updatedCostumer.PhoneNumber = newCostumer.PhoneNumber;
+            costumerService.UpdateAsync(id, updatedCostumer);
+            return Task.FromResult(updatedCostumer);
         }
-
-        public Task<bool> DeleteAsync(params string[] list)
-        {
-            throw new NotImplementedException();
-        }
-
-        //public List<BLCostumer> GetAll(BaseQueryParams queryParams)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
 
     }
 }
