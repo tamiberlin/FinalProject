@@ -23,6 +23,19 @@ public class DALCostumerService : IDALCostumerService
         return PagedList<Costumer>.ToPagedList(queryable, queryParams.PageNumber, queryParams.PageSize);
 
     }
+
+    public async Task<Costumer> GetByIdAsync(string id)
+    {
+        try
+        {
+            return await context.Costumers.Where(c => String.Equals(id,c.CostumerId)).FirstOrDefaultAsync();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.ToString());
+            throw new Exception($"failed to load costumer: {id}");
+        }
+    }
     #endregion
 
     #region Create functions
@@ -49,15 +62,15 @@ public class DALCostumerService : IDALCostumerService
     {
         try
         {
-        Costumer costumer = context.Costumers.FirstOrDefault(c => c.CostumerId.Equals(id));
-        if (costumer != null)
-        {
-            context.Costumers.Remove(costumer);
+            Costumer costumer = context.Costumers.FirstOrDefault(c => c.CostumerId.Equals(id));
+            if (costumer != null)
+            {
+                context.Costumers.Remove(costumer);
+            }
+            await context.SaveChangesAsync();
+            return costumer;
         }
-        await context.SaveChangesAsync();
-        return costumer;
-        }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Debug.WriteLine(ex.ToString());
             throw new Exception($"failed to dalete costumer : {id}");
@@ -70,12 +83,13 @@ public class DALCostumerService : IDALCostumerService
     {
         try
         {
-            Costumer costumer = context.Costumers.FirstOrDefault(c => c.CostumerId.Equals(id));
+            Costumer? costumer = context.Costumers.FirstOrDefault(c => c.CostumerId.Equals(id));
             if (costumer != null)
             {
-                context.Costumers.Update(entity);
+                costumer = entity;
+                context.SaveChangesAsync();
             }
-            await context.SaveChangesAsync();
+
             return costumer;
         }
         catch (Exception ex)

@@ -30,6 +30,13 @@ public class CostumerController : ControllerBase
     }
 
     [EnableCors]
+    [HttpGet("{id}")]
+    public BLCostumer GetCostumerById(int id)
+    {
+        return costumers.GetById(id.ToString());
+    }
+
+    [EnableCors]
     [HttpPost]
     public Costumer CreateCostumer([FromBody] BLCostumer costumer)
     {

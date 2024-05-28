@@ -4,6 +4,7 @@ using Common;
 using DAL;
 using DAL.DALImplementation;
 using DAL.DALModels;
+using Microsoft.Identity.Client;
 
 namespace BL.BLImplementation
 {
@@ -43,6 +44,18 @@ namespace BL.BLImplementation
                 usersList.Add(newCostumer);
             }
             return usersList;
+        }
+
+        public BLCostumer GetById(string id) 
+        { 
+            Task<Costumer> costumer = costumerService.GetByIdAsync(id);
+            BLCostumer newCostumer = new BLCostumer();
+            newCostumer.CostumerId = costumer.Result.CostumerId;
+            newCostumer.CostumerName = costumer.Result.CostumerName;
+            newCostumer.PhoneNumber = costumer.Result.PhoneNumber;
+            newCostumer.NumberOfPeople = costumer.Result.NumberOfPeople;
+            newCostumer.TourCode = costumer.Result.TourCode;
+            return newCostumer;
         }
 
         public Task<Costumer> Delete(string id)
