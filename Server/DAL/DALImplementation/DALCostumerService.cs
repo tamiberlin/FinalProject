@@ -38,7 +38,7 @@ public class DALCostumerService : IDALCostumerService
     }
     #endregion
 
-    #region Create functions
+    #region Create function
     public async Task<Costumer> CreateAsync(Costumer entity)
     {
         try
@@ -57,7 +57,7 @@ public class DALCostumerService : IDALCostumerService
 
     #endregion
 
-    #region Delete functions
+    #region Delete function
     public async Task<Costumer> DeleteAsync(String id)
     {
         try
@@ -86,10 +86,12 @@ public class DALCostumerService : IDALCostumerService
             Costumer? costumer = context.Costumers.FirstOrDefault(c => c.CostumerId.Equals(id));
             if (costumer != null)
             {
+                //costumer.CostumerName = entity.CostumerName;
+                //costumer.PhoneNumber = entity.PhoneNumber;
+                //costumer.CostumerId = entity.CostumerId;
                 costumer = entity;
                 context.SaveChangesAsync();
             }
-
             return costumer;
         }
         catch (Exception ex)

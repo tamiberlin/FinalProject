@@ -6,6 +6,9 @@ using DAL.DALModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Net;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
 namespace Server.Controllers;
@@ -31,9 +34,14 @@ public class CostumerController : ControllerBase
 
     [EnableCors]
     [HttpGet("{id}")]
-    public BLCostumer GetCostumerById(int id)
+    public ActionResult<BLCostumer> GetCostumerById(int id)
     {
-        return costumers.GetById(id.ToString());
+        BLCostumer costumer =  costumers.GetById(id.ToString());
+        if(costumer.CostumerName != null)
+        {
+            return costumer;
+        }
+        return NotFound();
     }
 
     [EnableCors]
@@ -45,15 +53,25 @@ public class CostumerController : ControllerBase
 
     [EnableCors]
     [HttpDelete("{id}")]
-    public Costumer DeleteCostumer(int id)
+    public ActionResult<Costumer> DeleteCostumer(int id)
     {
-        return costumers.Delete(id.ToString()).Result;
+        Costumer delete =  costumers.Delete(id.ToString()).Result;
+        if(delete != null)
+        {
+            return delete;
+        }
+        return NotFound();
     }
 
     [EnableCors]
     [HttpPut("{id}")]
-    public Costumer Updatecostumer(int id,[FromBody] BLCostumer costumer)
+    public ActionResult<Costumer> Updatecostumer(int id,[FromBody] BLCostumer costumer)
     {
-        return costumers.Update(id.ToString(), costumer).Result;
+        Costumer Update  = costumers.Update(id.ToString(), costumer).Result;
+        if (Update != null)
+        {
+            return Update;
+        }
+        return NotFound();
     }
 }

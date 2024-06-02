@@ -16,6 +16,8 @@ namespace BL.BLImplementation
             this.costumerService = costumerService.Costumers;
         }
 
+
+        #region Create function
         public Task<Costumer> Create(BLCostumer entity)
         {
             Costumer newCostumer = new Costumer();
@@ -25,10 +27,13 @@ namespace BL.BLImplementation
             newCostumer.NumberOfPeople = entity.NumberOfPeople;
             newCostumer.PaymentCode = entity.PaymentCode;
             newCostumer.TourCode = entity.TourCode;
-            costumerService.CreateAsync(newCostumer);
-            return Task.FromResult(newCostumer);
+            return costumerService.CreateAsync(newCostumer);
         }
 
+        #endregion
+
+
+        #region Get Functions
         public List<BLCostumer> GetAll(BaseQueryParams queryParams)
         {
             Task<PagedList<Costumer>> pagedCostumers = costumerService.GetAllAsync(queryParams);
@@ -50,28 +55,38 @@ namespace BL.BLImplementation
         { 
             Task<Costumer> costumer = costumerService.GetByIdAsync(id);
             BLCostumer newCostumer = new BLCostumer();
+            if(costumer.Result != null)
+            {
             newCostumer.CostumerId = costumer.Result.CostumerId;
             newCostumer.CostumerName = costumer.Result.CostumerName;
             newCostumer.PhoneNumber = costumer.Result.PhoneNumber;
             newCostumer.NumberOfPeople = costumer.Result.NumberOfPeople;
             newCostumer.TourCode = costumer.Result.TourCode;
+            }
             return newCostumer;
         }
 
+        #endregion
+
+
+        #region Delete function
         public Task<Costumer> Delete(string id)
         {
              return costumerService.DeleteAsync(id);
         }
+        #endregion
 
+
+        #region Update function
         public Task<Costumer> Update(string id, BLCostumer newCostumer)
         {
             Costumer updatedCostumer = new Costumer();
             updatedCostumer.CostumerId = newCostumer.CostumerId;
             updatedCostumer.CostumerName = newCostumer.CostumerName;
             updatedCostumer.PhoneNumber = newCostumer.PhoneNumber;
-            costumerService.UpdateAsync(id, updatedCostumer);
-            return Task.FromResult(updatedCostumer);
+            return costumerService.UpdateAsync(id, updatedCostumer);
         }
+        #endregion
 
     }
 }

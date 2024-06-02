@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 
 namespace BL.BLApi;
 
-public interface IBLFlightService:IBLService<BLFlight, Flight>
+public interface IBLHousingService:IBLService<BLHousing, Housing>
 {
 }
