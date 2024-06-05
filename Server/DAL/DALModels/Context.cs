@@ -29,6 +29,8 @@ public partial class Context : DbContext
 
     public virtual DbSet<Housing> Housings { get; set; }
 
+    public virtual DbSet<OrdersToCosumer> OrdersToCosumers { get; set; }
+
     public virtual DbSet<Payment> Payments { get; set; }
 
     public virtual DbSet<Room> Rooms { get; set; }
@@ -50,17 +52,17 @@ public partial class Context : DbContext
             entity.HasOne(d => d.AttractionCodeNavigation).WithMany(p => p.AtractionsToTours)
                 .HasForeignKey(d => d.AttractionCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Atraction__Attra__22751F6C");
+                .HasConstraintName("FK__Atraction__Attra__3F115E1A");
 
             entity.HasOne(d => d.TourCodeNavigation).WithMany(p => p.AtractionsToTours)
                 .HasForeignKey(d => d.TourCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Atraction__TourC__236943A5");
+                .HasConstraintName("FK__Atraction__TourC__47A6A41B");
         });
 
         modelBuilder.Entity<Attraction>(entity =>
         {
-            entity.HasKey(e => e.AttractionId).HasName("PK__tmp_ms_x__DAE24DBAF27AF98F");
+            entity.HasKey(e => e.AttractionId).HasName("PK__tmp_ms_x__DAE24DBA2EC5FD13");
 
             entity.Property(e => e.AttractionId).HasColumnName("AttractionID");
             entity.Property(e => e.AttractionName)
@@ -71,12 +73,12 @@ public partial class Context : DbContext
             entity.HasOne(d => d.AddressCodeNavigation).WithMany(p => p.Attractions)
                 .HasForeignKey(d => d.AddressCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Attractio__Addre__17F790F9");
+                .HasConstraintName("FK__Attractio__Addre__40058253");
         });
 
         modelBuilder.Entity<Costumer>(entity =>
         {
-            entity.HasKey(e => e.CostumerId).HasName("PK__Costumer__8E5D6990C283A630");
+            entity.HasKey(e => e.CostumerId).HasName("PK__Costumer__8E5D69904AC737D5");
 
             entity.Property(e => e.CostumerId)
                 .HasMaxLength(10)
@@ -87,25 +89,18 @@ public partial class Context : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(10)
                 .IsFixedLength()
                 .UseCollation("SQL_Latin1_General_CP1_CI_AS");
-
-            entity.HasOne(d => d.PaymentCodeNavigation).WithMany(p => p.Costumers)
-                .HasForeignKey(d => d.PaymentCode)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Costumers__Payme__19DFD96B");
-
-            entity.HasOne(d => d.TourCodeNavigation).WithMany(p => p.Costumers)
-                .HasForeignKey(d => d.TourCode)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Costumers__TourC__1CBC4616");
         });
 
         modelBuilder.Entity<DatesForRoom>(entity =>
         {
-            entity.HasKey(e => e.DateId).HasName("PK__DatesFor__A426F253F7ACEE3D");
+            entity.HasKey(e => e.DateId).HasName("PK__tmp_ms_x__A426F2532ED21C56");
 
             entity.Property(e => e.DateId).HasColumnName("DateID");
             entity.Property(e => e.CostumerCode)
@@ -118,12 +113,12 @@ public partial class Context : DbContext
             entity.HasOne(d => d.CostumerCodeNavigation).WithMany(p => p.DatesForRooms)
                 .HasForeignKey(d => d.CostumerCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DatesForR__Costu__2180FB33");
+                .HasConstraintName("FK__DatesForR__Costu__46B27FE2");
 
             entity.HasOne(d => d.RoomCodeNavigation).WithMany(p => p.DatesForRooms)
                 .HasForeignKey(d => d.RoomCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DatesForR__RoomC__208CD6FA");
+                .HasConstraintName("FK__DatesForR__RoomC__45BE5BA9");
         });
 
         modelBuilder.Entity<Destination>(entity =>
@@ -143,7 +138,7 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<Flight>(entity =>
         {
-            entity.HasKey(e => e.FlightId).HasName("PK__Flights__8A9E148E58C7D006");
+            entity.HasKey(e => e.FlightId).HasName("PK__Flights__8A9E148E9749A4FD");
 
             entity.Property(e => e.FlightId)
                 .ValueGeneratedNever()
@@ -159,12 +154,12 @@ public partial class Context : DbContext
             entity.HasOne(d => d.DepartureCodeNavigation).WithMany(p => p.FlightDepartureCodeNavigations)
                 .HasForeignKey(d => d.DepartureCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Flights__Departu__14270015");
+                .HasConstraintName("FK__Flights__Departu__29221CFB");
 
             entity.HasOne(d => d.DestinationCodeNavigation).WithMany(p => p.FlightDestinationCodeNavigations)
                 .HasForeignKey(d => d.DestinationCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Flights__Destina__151B244E");
+                .HasConstraintName("FK__Flights__Destina__2A164134");
         });
 
         modelBuilder.Entity<Housing>(entity =>
@@ -193,6 +188,25 @@ public partial class Context : DbContext
                 .HasConstraintName("FK__Housing__Address__160F4887");
         });
 
+        modelBuilder.Entity<OrdersToCosumer>(entity =>
+        {
+            entity.HasKey(e => e.OrderId).HasName("PK__OrdersTo__C3905BCF5613B1C0");
+
+            entity.Property(e => e.CostumerId)
+                .HasMaxLength(10)
+                .IsFixedLength()
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
+                .HasColumnName("CostumerID");
+            entity.Property(e => e.OrderType)
+                .HasMaxLength(50)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+
+            entity.HasOne(d => d.Costumer).WithMany(p => p.OrdersToCosumers)
+                .HasForeignKey(d => d.CostumerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__OrdersToC__Costu__3A4CA8FD");
+        });
+
         modelBuilder.Entity<Payment>(entity =>
         {
             entity.HasKey(e => e.PaymentId).HasName("PK__tmp_ms_x__9B556A585717AA69");
@@ -214,22 +228,24 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<Room>(entity =>
         {
-            entity.HasKey(e => e.RoomId).HasName("PK__tmp_ms_x__328639193771063A");
+            entity.HasKey(e => e.RoomId).HasName("PK__tmp_ms_x__328639192A6F3460");
 
             entity.Property(e => e.RoomId).HasColumnName("RoomID");
 
             entity.HasOne(d => d.HouseCodeNavigation).WithMany(p => p.Rooms)
                 .HasForeignKey(d => d.HouseCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Rooms__HouseCode__17036CC0");
+                .HasConstraintName("FK__Rooms__HouseCode__40F9A68C");
         });
 
         modelBuilder.Entity<Tour>(entity =>
         {
-            entity.HasKey(e => e.TourCode).HasName("PK__tmp_ms_x__1982F8D1BAB28C7C");
+            entity.HasKey(e => e.TourCode).HasName("PK__Tours__1982F8D1C85118B0");
 
             entity.Property(e => e.TourCode).ValueGeneratedNever();
+            entity.Property(e => e.EndDate).HasColumnType("date");
             entity.Property(e => e.Price).HasColumnType("money");
+            entity.Property(e => e.StartDate).HasColumnType("date");
             entity.Property(e => e.TourName)
                 .HasMaxLength(50)
                 .UseCollation("SQL_Latin1_General_CP1_CI_AS");
@@ -237,16 +253,17 @@ public partial class Context : DbContext
             entity.HasOne(d => d.DestinationCodeNavigation).WithMany(p => p.Tours)
                 .HasForeignKey(d => d.DestinationCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Tours__Destinati__1EA48E88");
+                .HasConstraintName("FK__Tours__Destinati__2EDAF651");
 
             entity.HasOne(d => d.FlightCodeNavigation).WithMany(p => p.Tours)
                 .HasForeignKey(d => d.FlightCode)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Tours__FlightCod__1DB06A4F");
+                .HasConstraintName("FK__Tours__FlightCod__42E1EEFE");
 
             entity.HasOne(d => d.HouseCodeNavigation).WithMany(p => p.Tours)
                 .HasForeignKey(d => d.HouseCode)
-                .HasConstraintName("FK__Tours__HouseCode__1F98B2C1");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Tours__HouseCode__2FCF1A8A");
         });
 
         OnModelCreatingPartial(modelBuilder);

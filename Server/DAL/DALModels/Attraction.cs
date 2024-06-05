@@ -11,7 +11,7 @@ public partial class Attraction
 
     public int AddressCode { get; set; }
 
-    public TimeSpan? DurationOfActivity { get; set; }
+    public TimeSpan DurationOfActivity { get; set; }
 
     public decimal PricePerTicket { get; set; }
 

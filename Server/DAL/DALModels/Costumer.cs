@@ -13,13 +13,9 @@ public partial class Costumer
 
     public int NumberOfPeople { get; set; }
 
-    public int TourCode { get; set; }
-
-    public int PaymentCode { get; set; }
+    public string Email { get; set; } = null!;
 
     public virtual ICollection<DatesForRoom> DatesForRooms { get; set; } = new List<DatesForRoom>();
 
-    public virtual Payment PaymentCodeNavigation { get; set; } = null!;
-
-    public virtual Tour TourCodeNavigation { get; set; } = null!;
+    public virtual ICollection<OrdersToCosumer> OrdersToCosumers { get; set; } = new List<OrdersToCosumer>();
 }

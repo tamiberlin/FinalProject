@@ -14,6 +14,4 @@ public partial class Payment
     public DateTime Validity { get; set; }
 
     public int Cvv { get; set; }
-
-    public virtual ICollection<Costumer> Costumers { get; set; } = new List<Costumer>();
 }

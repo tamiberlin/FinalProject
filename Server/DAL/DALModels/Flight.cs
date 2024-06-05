@@ -21,6 +21,10 @@ public partial class Flight
 
     public double Price { get; set; }
 
+    public int AmountOfSeats { get; set; }
+
+    public int BookedSeats { get; set; }
+
     public virtual Destination DepartureCodeNavigation { get; set; } = null!;
 
     public virtual Destination DestinationCodeNavigation { get; set; } = null!;

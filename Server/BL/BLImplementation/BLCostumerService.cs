@@ -25,8 +25,6 @@ namespace BL.BLImplementation
             newCostumer.CostumerName = entity.CostumerName;
             newCostumer.PhoneNumber = entity.PhoneNumber;
             newCostumer.NumberOfPeople = entity.NumberOfPeople;
-            newCostumer.PaymentCode = entity.PaymentCode;
-            newCostumer.TourCode = entity.TourCode;
             return costumerService.CreateAsync(newCostumer);
         }
 
@@ -43,8 +41,6 @@ namespace BL.BLImplementation
                 BLCostumer newCostumer = new BLCostumer();
                 newCostumer.CostumerName = costumer.CostumerName;
                 newCostumer.CostumerId= costumer.CostumerId;
-                newCostumer.TourCode= costumer.TourCode;
-                newCostumer.PaymentCode= costumer.PaymentCode;
                 newCostumer.NumberOfPeople= costumer.NumberOfPeople;
                 usersList.Add(newCostumer);
             }
@@ -61,7 +57,6 @@ namespace BL.BLImplementation
             newCostumer.CostumerName = costumer.Result.CostumerName;
             newCostumer.PhoneNumber = costumer.Result.PhoneNumber;
             newCostumer.NumberOfPeople = costumer.Result.NumberOfPeople;
-            newCostumer.TourCode = costumer.Result.TourCode;
             }
             return newCostumer;
         }

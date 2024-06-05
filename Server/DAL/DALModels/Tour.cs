@@ -11,7 +11,7 @@ public partial class Tour
 
     public int FlightCode { get; set; }
 
-    public int? HouseCode { get; set; }
+    public int HouseCode { get; set; }
 
     public bool IsOrgenized { get; set; }
 
@@ -19,13 +19,15 @@ public partial class Tour
 
     public int DestinationCode { get; set; }
 
-    public virtual ICollection<AtractionsToTour> AtractionsToTours { get; set; } = new List<AtractionsToTour>();
+    public DateTime StartDate { get; set; }
 
-    public virtual ICollection<Costumer> Costumers { get; set; } = new List<Costumer>();
+    public DateTime EndDate { get; set; }
+
+    public virtual ICollection<AtractionsToTour> AtractionsToTours { get; set; } = new List<AtractionsToTour>();
 
     public virtual Destination DestinationCodeNavigation { get; set; } = null!;
 
     public virtual Flight FlightCodeNavigation { get; set; } = null!;
 
-    public virtual Housing? HouseCodeNavigation { get; set; }
+    public virtual Housing HouseCodeNavigation { get; set; } = null!;
 }

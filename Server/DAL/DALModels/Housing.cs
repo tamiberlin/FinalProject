@@ -17,7 +17,7 @@ public partial class Housing
 
     public int NumOfRooms { get; set; }
 
-    public string Email { get; set; } = null!;
+    public string? Email { get; set; }
 
     public bool IsHotel { get; set; }
 

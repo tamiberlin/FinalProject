@@ -1,10 +1,45 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net7.0\BL.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net7.0\BL.GlobalUsings.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net7.0\BL.deps.json" />
+    <Content Include="obj\BL.csproj.nuget.dgspec.json" />
+    <Content Include="obj\Debug\net7.0\BL.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net7.0\BL.dll" />
+    <None Include="bin\Debug\net7.0\BL.pdb" />
+    <None Include="bin\Debug\net7.0\Common.dll" />
+    <None Include="bin\Debug\net7.0\Common.pdb" />
+    <None Include="bin\Debug\net7.0\DAL.dll" />
+    <None Include="bin\Debug\net7.0\DAL.pdb" />
+    <None Include="obj\BL.csproj.nuget.g.props" />
+    <None Include="obj\BL.csproj.nuget.g.targets" />
+    <None Include="obj\Debug\net7.0\BL.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net7.0\BL.assets.cache" />
+    <None Include="obj\Debug\net7.0\BL.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net7.0\BL.csproj.CopyComplete" />
+    <None Include="obj\Debug\net7.0\BL.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net7.0\BL.dll" />
+    <None Include="obj\Debug\net7.0\BL.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net7.0\BL.pdb" />
+    <None Include="obj\Debug\net7.0\refint\BL.dll" />
+    <None Include="obj\Debug\net7.0\ref\BL.dll" />
+    <None Include="obj\project.nuget.cache" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
