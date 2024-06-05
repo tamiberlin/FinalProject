@@ -34,11 +34,12 @@ public class DALFlightService:IDALFlightService
         var queryable = context.Flights.AsQueryable();
         return PagedList<Flight>.ToPagedList(queryable, queryParams.PageNumber, queryParams.PageSize);
     }
+    #endregion
 
     public Task<Flight> UpdateAsync(string id, Flight entity)
     {
         throw new NotImplementedException();
     }
 
-    #endregion
+    
 }
