@@ -25,4 +25,8 @@ public class ToursController : ControllerBase
     {
         return tours.GetAll(queryParams);
     }
+    public List<BLTour> GetTours() 
+    {
+        return tours.GetAllTours();
+    }
 }

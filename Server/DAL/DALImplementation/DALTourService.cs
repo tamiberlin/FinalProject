@@ -32,6 +32,11 @@ public class DALTourService : IDALTourService
         var queryable = context.Tours.AsQueryable();
         return PagedList<Tour>.ToPagedList(queryable, queryParams.PageNumber, queryParams.PageSize);
     }
+    public async Task<List<Tour>> GetAllAsyncTours()
+    {
+        var list = context.Tours.ToList();
+        return list;
+    }
 
     public Task<Tour> UpdateAsync(string id, Tour entity)
     {

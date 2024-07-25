@@ -46,6 +46,22 @@ public class BLTourService : IBLTourService
         return tourList;
     }
 
+    public List<BLTour> GetAllTours()
+    {
+        Task<List<Tour>> pagedTours = tourService.GetAllAsyncTours();
+        List<BLTour> tourList = new List<BLTour>();
+        foreach (var tour in pagedTours.Result)
+        {
+            BLTour newTour = new BLTour();
+            newTour.TourCode = tour.TourCode;
+            newTour.TourName = tour.TourName;
+            newTour.AtractionsToTours = tour.AtractionsToTours;
+            newTour.Price = tour.Price;
+            tourList.Add(newTour);
+        }
+        return tourList;
+    }
+
     public Task<Tour> Update(string id, BLTour entity)
     {
         throw new NotImplementedException();

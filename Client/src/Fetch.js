@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
 const Fetch = () => {
-  const [costumers, setCostumers] = useState([]);
+  const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5135/api/costumer')
+    // fetch('http://localhost:5135/api/costumer')
+    fetch('https://jsonplaceholder.typicode.com/users')
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         console.log(data);
-        setCostumers(data);
+        setUsers(data);
       });
   }, []);
   return (
-    costumers.map(costumer => (<div>{costumer.costumerName}</div>))
+    users.map(user => (<div>{user.name}</div>))
   );
 };
 export default Fetch;

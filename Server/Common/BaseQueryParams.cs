@@ -10,7 +10,7 @@ namespace Common
     {
         const int MAX_PAGE_SIZE = 50;
         public int PageNumber { get; set; } = 1;
-        private int _pageSize = 15;
+        private int _pageSize = 50;
         public int PageSize 
         { 
             get { return _pageSize; } 

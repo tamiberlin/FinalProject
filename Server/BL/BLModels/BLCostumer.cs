@@ -19,14 +19,11 @@ namespace BL.BLModels
 
         public int NumberOfPeople { get; set; }
 
-        public int TourCode { get; set; }
+        public string Email { get; set; } = null!;
 
-        public int PaymentCode { get; set; }
+        public virtual ICollection<DatesForRoom> DatesForRooms { get; set; } = new List<DatesForRoom>();
 
-        //public virtual ICollection<DatesForRoom> DatesForRooms { get; set; } = new List<DatesForRoom>();
+        public virtual ICollection<OrdersToCosumer> OrdersToCosumers { get; set; } = new List<OrdersToCosumer>();
 
-        //public virtual Payment PaymentCodeNavigation { get; set; } = null!;
-
-        //public virtual Tour TourCodeNavigation { get; set; } = null!;
     }
 }

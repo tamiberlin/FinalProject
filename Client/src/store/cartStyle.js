@@ -39,7 +39,7 @@ export default function CartStyle() {
                                         <th scope="col"> </th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Price</th>
-                                        <th scope="col"> hhhhhh </th>
+                                        <th scope="col"> Company </th>
                                     </tr>
                                 </MDBTableHead>
                                 {cart.map((item) => (<>

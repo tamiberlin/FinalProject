@@ -86,11 +86,15 @@ public class DALCostumerService : IDALCostumerService
             Costumer? costumer = context.Costumers.FirstOrDefault(c => c.CostumerId.Equals(id));
             if (costumer != null)
             {
-                //costumer.CostumerName = entity.CostumerName;
-                //costumer.PhoneNumber = entity.PhoneNumber;
-                //costumer.CostumerId = entity.CostumerId;
-                costumer = entity;
+                costumer.CostumerName = entity.CostumerName;
+                costumer.PhoneNumber = entity.PhoneNumber;
+                costumer.CostumerId = entity.CostumerId;
+                costumer.Email = entity.Email;
+                costumer.OrdersToCosumers = entity.OrdersToCosumers;
+                costumer.NumberOfPeople = entity.NumberOfPeople;
+                
                 context.SaveChangesAsync();
+                return costumer;
             }
             return costumer;
         }
