@@ -1,6 +1,7 @@
 ﻿using Common;
 using DAL.DALApi;
 using DAL.DALModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +29,17 @@ public class DALFlightService:IDALFlightService
     }
 
     #region Get functions
-
     public async Task<PagedList<Flight>> GetAllAsync(BaseQueryParams queryParams)
     {
-        var queryable = context.Flights.AsQueryable();
-        return PagedList<Flight>.ToPagedList(queryable, queryParams.PageNumber, queryParams.PageSize);
+        // Ensure related entities are loaded
+        var queryable = context.Flights
+            .Include(f => f.DepartureCodeNavigation) // Ensure DepartureCodeNavigation is loaded
+            .Include(f => f.DestinationCodeNavigation) // Ensure DestinationCodeNavigation is loaded
+            .AsQueryable();
+
+        return await Task.Run(() => PagedList<Flight>.ToPagedList(queryable, queryParams.PageNumber, queryParams.PageSize));
     }
+
     #endregion
 
     public Task<Flight> UpdateAsync(string id, Flight entity)
