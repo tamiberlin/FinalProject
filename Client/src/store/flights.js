@@ -50,20 +50,28 @@ function Flights() {
     fetchFlightData();
   }, []);
 
-  // Handle input change and filter destinations
-  function handleInputChange(event) {
+  function filterByDeparture(event) {
     const query = event.target.value.toLowerCase();
-    const filtered = destinations.filter((destination) =>
-      destination.cityName.toLowerCase().includes(query)
+    const filtered = flights.filter((flight) =>
+      flight.departureCity.toLowerCase().includes(query) || flight.departureCountry.toLowerCase().includes(query)
     );
-    setFilteredDestinations(filtered);
+    setFilteredFlights(filtered);
   }
-  function filterFlights() {
-    const filteredFlights = flights.filter(
-      (flight) =>
-        flight.departureCode === filteredDestinations.id
+
+  function filterByDestination(event) {
+    const query = event.target.value.toLowerCase();
+    const filtered = flights.filter((flight) =>
+      flight.destinationCity.toLowerCase().includes(query) || flight.destinationCountry.toLowerCase().includes(query)
     );
-    setFilteredFlights(filteredFlights);
+    setFilteredFlights(filtered);
+  }
+
+  function filterByLeavingDate(event) {
+    const query = event.target.value.toLowerCase();
+    const filtered = flights.filter((flight) =>
+      flight.date.toLowerCase().includes(query) || flight.date.toLowerCase().includes(query)
+    );
+    setFilteredFlights(filtered);
   }
 
   function handleSearchChange(event) {
@@ -96,7 +104,7 @@ function Flights() {
               type="text"
               placeholder="Search departure..."
               name="departure"
-              onChange={handleInputChange}
+              onChange={filterByDeparture}
               defaultValue="Tel-Aviv"
               style={inputStyle}
             />
@@ -104,21 +112,21 @@ function Flights() {
               type="text"
               placeholder="Search destinations..."
               name="destination"
-              onChange={handleInputChange}
+              onChange={filterByDestination}
               style={inputStyle}
             />
             <MDBInput
               type="date"
               placeholder="Check in date"
               name="date"
-              onChange={handleInputChange}
+              onChange={filterByLeavingDate}
               style={inputStyle}
             />
           </div>
       {/* <button type="submit" onClick={filterFlights}>
         search
       </button> */}
-      <MDBContainer>
+      {/* <MDBContainer>
         <ul>
           {filteredDestinations.map((destination) => (
             <li key={destination.id}>
@@ -126,7 +134,7 @@ function Flights() {
             </li>
           ))}
         </ul>
-      </MDBContainer>
+      </MDBContainer> */}
       <MDBContainer fluid>
         <MDBRow className="justify-content-center mb-0">
           <MDBCol md="12" xl="10">
@@ -171,9 +179,9 @@ function Flights() {
                           <span>310</span>
                         </div>
                         <div className="mt-1 mb-0 text-muted small">
-                          <span>Departure: {flight.departureCode}</span>
+                          <span>Departure: {flight.departureCity + ' ,' +flight.departureCountry}</span>
                           <span className="text-primary"> • </span>
-                          <span>Destination: {flight.destinationCode}</span>
+                          <span>Destination: {flight.destinationCity +', '+ flight.destinationCountry}</span>
                           <br />
                         </div>
                         <div className="mb-2 text-muted small">
